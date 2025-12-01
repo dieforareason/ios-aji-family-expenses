@@ -1,0 +1,260 @@
+{
+  "task": "Create a complete offline-first React Native family expense tracking application",
+  "application_name": "Aji Tracking Family Expenses",
+  "platform_requirements": {
+    "platforms": ["iOS iPhone", "iOS iPad"],
+    "offline_mode": "mandatory - application must work completely offline",
+    "data_storage": "local device storage only, no cloud sync required"
+  },
+  "tech_stack": {
+    "framework": "React Native",
+    "state_management": "React Context API or Redux",
+    "local_database": "WatermelonDB or AsyncStorage",
+    "password_hashing": "bcrypt or bcrypt-react-native",
+    "charts": "react-native-chart-kit or Victory Native",
+    "date_handling": "date-fns with Indonesian locale",
+    "styling": "React Native StyleSheet with responsive design for iPad"
+  },
+  "user_roles": {
+    "admin": {
+      "capabilities": [
+        "Full CRUD on all expenses",
+        "Create and delete family members",
+        "Create and delete expense categories",
+        "View all reports and analytics",
+        "Manage user accounts"
+      ]
+    },
+    "user": {
+      "capabilities": [
+        "Add new expenses",
+        "Edit own expenses only",
+        "Delete own expenses only",
+        "View all family expenses",
+        "View reports and analytics",
+        "Filter and sort expenses"
+      ]
+    }
+  },
+  "authentication": {
+    "method": "local authentication with secure storage",
+    "password_security": "bcrypt hashing with salt rounds >= 10",
+    "session_management": "persist login state locally",
+    "logout": "clear session and return to login screen"
+  },
+  "core_features": {
+    "user_management": {
+      "admin_only": true,
+      "actions": ["create family member", "delete family member"],
+      "required_fields": ["name", "username", "password", "role (admin/user)"]
+    },
+    "category_management": {
+      "admin_only": true,
+      "actions": ["create category", "delete category"],
+      "required_fields": ["category name", "optional icon or color"],
+      "default_categories": [
+        "Makanan & Minuman",
+        "Transportasi",
+        "Belanja",
+        "Tagihan",
+        "Kesehatan",
+        "Pendidikan",
+        "Hiburan",
+        "Lainnya"
+      ]
+    },
+    "expense_tracking": {
+      "add_expense": {
+        "required_fields": [
+          "title (string)",
+          "amount (number, Indonesian Rupiah)",
+          "category (dropdown selection)",
+          "date (date picker)",
+          "notes (optional text)"
+        ],
+        "validation": [
+          "amount must be positive number",
+          "title is required",
+          "category is required",
+          "date cannot be future date"
+        ]
+      },
+      "edit_expense": {
+        "permissions": "users can edit only their own expenses, admin can edit all",
+        "fields": "all expense fields are editable"
+      },
+      "delete_expense": {
+        "permissions": "users can delete only their own expenses, admin can delete all",
+        "confirmation": "show confirmation dialog before deletion"
+      },
+      "filter_options": [
+        "by category (multi-select)",
+        "by date range (start date and end date)",
+        "by family member (admin view only)"
+      ],
+      "sort_options": [
+        "by date (ascending/descending)",
+        "by amount (ascending/descending)"
+      ],
+      "list_view": {
+        "display": [
+          "expense title",
+          "formatted amount (Rp 1.000.000)",
+          "category",
+          "date in Indonesian format (DD MMM YYYY)",
+          "added by (family member name)"
+        ],
+        "actions": ["tap to view details", "swipe for edit/delete"]
+      },
+      "total_display": {
+        "location": "top of expense list or summary card",
+        "format": "Rp 1.000.000,00",
+        "calculation": "sum of all filtered expenses"
+      }
+    },
+    "reports_and_analytics": {
+      "time_periods": [
+        "today",
+        "this week",
+        "this month",
+        "this year",
+        "custom date range"
+      ],
+      "visualizations": {
+        "pie_chart": {
+          "data": "expenses grouped by category",
+          "display": "category name, amount, percentage",
+          "colors": "distinct color for each category"
+        },
+        "line_chart": {
+          "data": "expenses over time (daily or monthly)",
+          "x_axis": "date",
+          "y_axis": "amount in Rupiah"
+        }
+      },
+      "statistics_dashboard": {
+        "metrics": [
+          "total expenses (Rp format)",
+          "average expense per day/week/month",
+          "highest single expense (with details)",
+          "total number of transactions",
+          "most expensive category"
+        ]
+      },
+      "category_breakdown": {
+        "display": [
+          "category name",
+          "total amount (Rp format)",
+          "percentage of total expenses",
+          "number of transactions",
+          "bar or progress indicator"
+        ],
+        "sorting": "by amount descending"
+      }
+    }
+  },
+  "localization_requirements": {
+    "currency": {
+      "format": "Indonesian Rupiah",
+      "symbol": "Rp",
+      "decimal_separator": ",",
+      "thousands_separator": ".",
+      "examples": ["Rp 1.000", "Rp 50.000", "Rp 1.500.000,50"]
+    },
+    "date_format": {
+      "locale": "id-ID (Indonesian)",
+      "short_format": "DD/MM/YYYY",
+      "long_format": "DD MMMM YYYY",
+      "examples": ["01/12/2024", "1 Desember 2024"]
+    },
+    "interface_language": "Indonesian (Bahasa Indonesia) preferred, with clear labels"
+  },
+  "ui_ux_requirements": {
+    "navigation": "tab navigation or drawer navigation for main sections",
+    "responsive_design": "adapt layout for iPhone (portrait) and iPad (landscape/portrait)",
+    "main_screens": [
+      "Login/Authentication",
+      "Dashboard (expenses overview + quick stats)",
+      "Add/Edit Expense",
+      "Expense List (with filters)",
+      "Reports & Analytics",
+      "Categories Management (admin only)",
+      "User Management (admin only)",
+      "Settings/Profile"
+    ],
+    "color_scheme": "professional and clean, suitable for financial tracking",
+    "accessibility": "readable fonts, good contrast, clear labels"
+  },
+  "data_structure": {
+    "users": {
+      "fields": [
+        "id (unique)",
+        "name",
+        "username",
+        "password_hash",
+        "role (admin or user)",
+        "created_at"
+      ]
+    },
+    "categories": {
+      "fields": [
+        "id (unique)",
+        "name",
+        "color or icon",
+        "created_at"
+      ]
+    },
+    "expenses": {
+      "fields": [
+        "id (unique)",
+        "title",
+        "amount (number)",
+        "category_id (foreign key)",
+        "date",
+        "notes",
+        "user_id (who created it)",
+        "created_at",
+        "updated_at"
+      ]
+    }
+  },
+  "security_requirements": [
+    "passwords must be hashed with bcrypt before storage",
+    "never store plain text passwords",
+    "secure local storage for authentication tokens",
+    "validate all user inputs",
+    "implement proper permission checks for admin-only features"
+  ],
+  "initial_setup": {
+    "first_launch": "create default admin account during first app launch",
+    "default_admin": {
+      "username": "admin",
+      "password": "admin123 (must be changed on first login)",
+      "prompt_password_change": true
+    },
+    "seed_data": "create default expense categories on first launch"
+  },
+  "deliverables": [
+    "Complete React Native project structure",
+    "All source code files with clear comments",
+    "package.json with all dependencies",
+    "README.md with setup instructions",
+    "Database schema and initial migration",
+    "Example screenshots or UI mockups if possible"
+  ],
+  "testing_requirements": [
+    "Test on iOS simulator (iPhone and iPad)",
+    "Test offline functionality completely",
+    "Test authentication flow",
+    "Test admin vs user permissions",
+    "Test data persistence after app restart"
+  ],
+  "additional_notes": [
+    "Focus on performance and smooth UI even with large expense lists",
+    "Implement proper error handling and user feedback",
+    "Add loading states for all async operations",
+    "Consider adding data export feature (CSV) for backup",
+    "Implement search functionality for expenses",
+    "Add confirmation dialogs for destructive actions (delete)"
+  ]
+}
