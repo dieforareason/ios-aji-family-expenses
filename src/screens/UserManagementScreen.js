@@ -10,7 +10,8 @@ import {
     Modal,
     ScrollView,
 } from 'react-native';
-import { getUsers, createUser, deleteUser } from '../services/auth';
+import { createUser } from '../services/auth';
+import { getUsers, deleteUser } from '../services/storage';
 import { colors } from '../styles/colors';
 import { commonStyles, spacing } from '../styles/common';
 

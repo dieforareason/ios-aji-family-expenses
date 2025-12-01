@@ -4,7 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { ActivityIndicator, View } from 'react-native';
 import { useAuth } from '../contexts/AuthContext';
-import { isInitialized } from '../services/storage';
+import { isInitialized, getUsers } from '../services/storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { colors } from '../styles/colors';
 
 // Screens
@@ -99,6 +100,16 @@ const AppNavigator = () => {
 
     const checkInitialization = async () => {
         const result = await isInitialized();
+        if (result) {
+            // Check if users exist - if app is initialized but no users, reset
+            const users = await getUsers();
+            if (users.length === 0) {
+                // App was initialized but no users exist - reset initialization
+                await AsyncStorage.removeItem('@aji_initialized');
+                setInitialized(false);
+                return;
+            }
+        }
         setInitialized(result);
     };
 

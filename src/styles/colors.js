@@ -1,21 +1,21 @@
 // Color palette for the app
 export const colors = {
-    primary: '#2196F3',
-    primaryDark: '#1976D2',
-    primaryLight: '#BBDEFB',
+    primary: '#EE6983',
+    primaryDark: '#D45A73',
+    primaryLight: '#F5A5B8',
 
-    secondary: '#4CAF50',
-    secondaryDark: '#388E3C',
+    secondary: '#EE6983',
+    secondaryDark: '#D45A73',
 
-    accent: '#FF9800',
+    accent: '#EE6983',
 
-    background: '#F5F5F5',
+    background: '#FCF5EE',
     surface: '#FFFFFF',
 
     error: '#F44336',
     warning: '#FFC107',
     success: '#4CAF50',
-    info: '#2196F3',
+    info: '#EE6983',
 
     text: {
         primary: '#212121',
