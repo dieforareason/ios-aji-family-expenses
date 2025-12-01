@@ -2,12 +2,17 @@
   "task": "Create a complete offline-first React Native family expense tracking application",
   "application_name": "Aji Tracking Family Expenses",
   "platform_requirements": {
-    "platforms": ["iOS iPhone", "iOS iPad"],
+    "platforms": [
+      "iOS iPhone",
+      "iOS iPad"
+    ],
     "offline_mode": "mandatory - application must work completely offline",
     "data_storage": "local device storage only, no cloud sync required"
   },
   "tech_stack": {
-    "framework": "React Native",
+    "framework": "React Native with Expo",
+    "expo_version": "latest SDK",
+    "build_service": "EAS Build for iOS compilation",
     "state_management": "React Context API or Redux",
     "local_database": "WatermelonDB or AsyncStorage",
     "password_hashing": "bcrypt or bcrypt-react-native",
@@ -45,13 +50,27 @@
   "core_features": {
     "user_management": {
       "admin_only": true,
-      "actions": ["create family member", "delete family member"],
-      "required_fields": ["name", "username", "password", "role (admin/user)"]
+      "actions": [
+        "create family member",
+        "delete family member"
+      ],
+      "required_fields": [
+        "name",
+        "username",
+        "password",
+        "role (admin/user)"
+      ]
     },
     "category_management": {
       "admin_only": true,
-      "actions": ["create category", "delete category"],
-      "required_fields": ["category name", "optional icon or color"],
+      "actions": [
+        "create category",
+        "delete category"
+      ],
+      "required_fields": [
+        "category name",
+        "optional icon or color"
+      ],
       "default_categories": [
         "Makanan & Minuman",
         "Transportasi",
@@ -104,7 +123,10 @@
           "date in Indonesian format (DD MMM YYYY)",
           "added by (family member name)"
         ],
-        "actions": ["tap to view details", "swipe for edit/delete"]
+        "actions": [
+          "tap to view details",
+          "swipe for edit/delete"
+        ]
       },
       "total_display": {
         "location": "top of expense list or summary card",
@@ -159,13 +181,20 @@
       "symbol": "Rp",
       "decimal_separator": ",",
       "thousands_separator": ".",
-      "examples": ["Rp 1.000", "Rp 50.000", "Rp 1.500.000,50"]
+      "examples": [
+        "Rp 1.000",
+        "Rp 50.000",
+        "Rp 1.500.000,50"
+      ]
     },
     "date_format": {
       "locale": "id-ID (Indonesian)",
       "short_format": "DD/MM/YYYY",
       "long_format": "DD MMMM YYYY",
-      "examples": ["01/12/2024", "1 Desember 2024"]
+      "examples": [
+        "01/12/2024",
+        "1 Desember 2024"
+      ]
     },
     "interface_language": "Indonesian (Bahasa Indonesia) preferred, with clear labels"
   },
